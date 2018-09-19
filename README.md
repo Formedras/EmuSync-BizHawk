@@ -16,7 +16,7 @@ Health and ammo is shared. Items obtained by a player are given to everyone. Ite
 ## Link to the Past Co-op
 
 Items obtained by a player are given to everyone. Items locations are split such that each item can be optained by only one player. It's usually a good idea to spread out on the overworld and communicate which items still need to be checked by who. With Split Keys or Raid Bosses enabled, it's highly recommended to enter dungeons together. The following can are configurable:
- 
+
 * **Health and Ammo** Health and ammo is shared. This includes bottles, bombs, arrows, magic, etc. Death is synced, so if you notice a pause, it's because the script is waiting for everyone to die together
 * **Split Big Keys** If enabled then dungeon Big Keys will be split so only one person can obtain it. Otherwise either player can get them.
 * **Split Small Keys** Similar to Big Keys, but is for the dungeon Small Keys. This includes Pot Keys and Enemy Drop Keys. Using a key does not remove other players keys. When disabled keys are not shared.
@@ -63,7 +63,7 @@ Next, the mzm-coop distribution includes two important things: the main lua scri
 Once this is done, your directory structure should look like this:
 
 ```
-(1) BizHawk-1.12.0/ 
+(1) BizHawk-1.12.0/
 (4)   bizhawk-co-op/
 (1)   dll/
 (3)     lua5.1.dll
@@ -98,13 +98,13 @@ Make sure to click Save Settings, and you should be ready to play!
 
 The host should first enter their name and password and click `Create Room` to host. Then the clients should click `Refresh` and select the appropriate room, enter their name and the room password, and click `Join Room`. bizhawk-co-op will run some consistency checks on your configurations to make sure you are running the same code. If these all passes then the players will be connected.
 
-* `Lock Room`: The Host can click this to prevent prevent anyone else from joining the room. 
+* `Lock Room`: The Host can click this to prevent prevent anyone else from joining the room.
 * `Leave Room`: Click this to cleanly close down the connection. Closing the Lua Console or BizHawk directly can result in issues reconnecting for some time.
 
 
 ### Supported Systems
 
-bizhawk-co-op will only run on a Windows OS because of BizHawk support.
+As BizHawk is only for Windows, bizhawk-co-op will only run on Windows.
 
 ### Credits
 
