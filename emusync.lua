@@ -28,11 +28,11 @@ function strsplit(inputstr, sep, max)
 end
 
 
-local sync = require("bizhawk-co-op\\sync")
+local sync = require("EmuSync\\sync")
 
 
 --Add a line to the output. Inserts a timestamp to the string
-function printOutput(str) 
+function printOutput(str)
 	local text = forms.gettext(text1)
 	local pos = #text
 	forms.setproperty(text1, "SelectionStart", pos)
@@ -47,19 +47,19 @@ function printOutput(str)
 end
 
 
-host = require("bizhawk-co-op\\host")
+host = require("EmuSync\\host")
 
 
 local roomlist = false
-function refreshRooms() 
+function refreshRooms()
 	roomlist = host.getRooms()
 	if roomlist then
 		roomlist['(Custom IP)']='(Custom IP)'
 		forms.setdropdownitems(ddRooms, roomlist)
-	else 
-		forms.setdropdownitems(ddRooms, 
+	else
+		forms.setdropdownitems(ddRooms,
 			{
-				['(Custom IP)']='(Custom IP)'			
+				['(Custom IP)']='(Custom IP)'
 			})
 	end
 
@@ -72,7 +72,7 @@ function updateGUI()
 	if host.status == 'Idle' then
 		if forms.setdropdownitems and roomlist then
 			forms.setproperty(ddRooms, 'Enabled', true)
-		else 
+		else
 			forms.setproperty(ddRooms, 'Enabled', false)
 		end
 		forms.setproperty(btnGetRooms, "Enabled", true)
@@ -90,7 +90,7 @@ function updateGUI()
 		else
 			forms.setproperty(txtIP, "Enabled", false)
 		end
-	else 
+	else
 		forms.setproperty(btnGetRooms, "Enabled", false)
 		forms.setproperty(ddRamCode, "Enabled", false)
 		forms.setproperty(ddRooms, "Enabled", false)
@@ -124,7 +124,7 @@ end
 function prepareConnection()
 	if roomlist then
 		config.room = forms.gettext(ddRooms)
-	else 
+	else
 		config.room = ''
 	end
 	config.ramcode = forms.gettext(ddRamCode)
@@ -139,7 +139,7 @@ end
 function leaveRoom()
 	if (host.connected()) then
 		sendMessage["Quit"] = true
-	else 
+	else
 		host.close()
 	end
 end
@@ -158,7 +158,7 @@ end
 
 
 --Create the form
-mainform = forms.newform(310, 356, "Bizhawk Co-op")
+mainform = forms.newform(310, 356, "EmuSync")
 
 text1 = forms.textbox(mainform, "", 263, 105, nil, 16, 199, true, true, 'Vertical')
 forms.setproperty(text1, "ReadOnly", true)
@@ -178,7 +178,7 @@ else
 	if roomlist then
 		ddRooms = forms.dropdown(mainform, roomlist, 80, 11, 200, 20)
 		forms.setproperty(ddRooms, 'Enabled', true)
-	else 
+	else
 		ddRooms = forms.dropdown(mainform, {['(Custom IP)']='(Custom IP)'}, 80, 11, 200, 20)
 		forms.setproperty(ddRooms, 'Enabled', false)
 	end
@@ -189,7 +189,7 @@ txtIP = forms.textbox(mainform, "", 200, 20, nil, 80, 40, false, false)
 txtUser = forms.textbox(mainform, "", 200, 20, nil, 80, 64, false, false)
 txtPass = forms.textbox(mainform, "", 200, 20, nil, 80, 88, false, false)
 txtPort = forms.textbox(mainform, '50000', 200, 20, nil, 80, 112, false, false)
-ddRamCode = forms.dropdown(mainform, os.dir("bizhawk-co-op\\ramcontroller"), 80, 138, 200, 10)
+ddRamCode = forms.dropdown(mainform, os.dir("EmuSync\\ramcontroller"), 80, 138, 200, 10)
 lblIP = forms.label(mainform, "Host IP:", 32, 42)
 lblUser = forms.label(mainform, "Username:", 19, 66)
 lblPass = forms.label(mainform, "Password:", 21, 90)
@@ -199,14 +199,14 @@ lblRamCode = forms.label(mainform, "Game Script:", 10, 140)
 forms.setproperty(txtPass, 'UseSystemPasswordChar', true)
 
 
-btnQuit = forms.button(mainform, "Leave Room", leaveRoom, 
+btnQuit = forms.button(mainform, "Leave Room", leaveRoom,
 	15, 166, 85, 25)
 forms.setproperty(btnQuit, 'Enabled', false)
-btnHost = forms.button(mainform, "Create Room", 
-	function() prepareConnection(); guiClick["Host Server"] = host.start end, 
+btnHost = forms.button(mainform, "Create Room",
+	function() prepareConnection(); guiClick["Host Server"] = host.start end,
 	105, 166, 85, 25)
-btnJoin = forms.button(mainform, "Join Room", 
-	function() prepareConnection(); guiClick["Join Server"] = host.join end, 
+btnJoin = forms.button(mainform, "Join Room",
+	function() prepareConnection(); guiClick["Join Server"] = host.join end,
 	195, 166, 85, 25)
 
 sendMessage = {}
@@ -253,7 +253,7 @@ while 1 do
 				else
 					printOutput("Error during " .. v .. ": No error message")
 				end
-			end						
+			end
 		end
 	end
 
